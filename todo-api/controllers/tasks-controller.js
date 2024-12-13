@@ -3,7 +3,6 @@ const HttpError = require('../models/http-error');
 const User = require('../models/user');
 const Task = require('../models/task');
 
-
 const getTasks = async (req, res, next) => {
 
     let tasks;
@@ -13,6 +12,11 @@ const getTasks = async (req, res, next) => {
         const error = new HttpError('Fetching tasks failed, please try again later.', 500);
         return next(error);
     }
+//
+tasks.forEach(task => console.log(task.toObject({ getters: true })));
+
+//
+
     res.json({ tasks: tasks.map(task => task.toObject({ getters: true })) });
 };
 
@@ -138,4 +142,3 @@ exports.getTasksByUserId = getTasksByUserId;
 exports.createTask = createTask;
 exports.updateTask = updateTask;
 exports.deleteTask = deleteTask;
-

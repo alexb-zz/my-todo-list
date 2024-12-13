@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Tasks from './routes/Tasks';
+import NewTask from './routes/NewTask';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import RootLayout from './routes/RootLayout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+     path: '/',
+     element: <RootLayout />,
+     children: [
+       {
+         path: '/',
+     element: <Tasks />,
+     children: [{path: 'create-task', element: <NewTask />}],
+       },
+     ],
+  },
+   {path: 'create-task', element: <NewTask />} 
+]);
+
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
