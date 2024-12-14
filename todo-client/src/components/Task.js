@@ -13,17 +13,17 @@ function Task(props) {
   }
 
   return (
-    <li>
-      <p>{props._id}</p>
-      <p>{props.title}</p>
-      <p>{props.description}</p>
+    <li className='flex justify-end items-center m-2 p-2 min-w-96 bg-slate-800 rounded-lg text-slate-400 shadow-inner-custom'>
+      <div id="key" className='hidden'>{props.id}</div>
+      <div className='p-2 m-2 text-size-6xl'>{props.title}</div>
+      <input 
+        className='m-2 p-2'
+          type="checkbox" 
+          checked={isDone} 
+          onChange={handleCheckboxChange}
+        />
 
-      Done?<input 
-        type="checkbox" 
-        checked={isDone} 
-        onChange={handleCheckboxChange}
-      />
-      
+      <div className='hidden'>{props.description}</div>
     </li>
   );
 }
