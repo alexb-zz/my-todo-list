@@ -33,9 +33,13 @@ function TasksList() {
   return (
     <>
     {!isFetching && tasks.length > 0 && (
-      <div className='bg-slate-900'>
-      <div className='flex flex-col justify-center items-center border-spacing-1rouded-lg'>
-        <ul className='flex flex-col justify-center items-center m-4  bg-slate-800 p-4 rounded-lg text-slate-300  text-size-2xl min-h-screen  shadow-lg'>
+      //background (color)//.
+      <div className='flex flex-row justify-center items-center min-h-screen  bg-black'>
+        
+      <div className='flex flex-col justify-start items-center w-[30rem] min-h-[40rem] border-spacing-1 rounded-lg border-2 border-slate-200/50'>
+
+      <div className='m-4 p-2 text-4xl text-slate-100/50'>My Todo List</div>
+        <ul className='flex flex-col justify-center items-center m-4  bg-black p-4 rounded-lg text-slate-300 min-h-2.5 border-2 border-slate-200/50 shadow-lg'>
           {tasks.map((task) => (
             <Task id={task.id} title={task.title} description={task.description} completed={task.completed} />
           ))}
