@@ -14,13 +14,14 @@ const router = createBrowserRouter([
      element: <RootLayout />,
      children: [
        {
-         path: '/',
-     element: <Tasks />,
-     children: [{path: 'create-task', element: <NewTask />}],
+          path: '/',
+          element: <Tasks />,
+          children: [{path: 'create-task', 
+            element: <NewTask />
+          }],
        },
      ],
-  },
-   {path: 'create-task', element: <NewTask />} 
+  }
 ]);
 
 

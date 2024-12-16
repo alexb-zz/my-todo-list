@@ -40,6 +40,7 @@ const getTasksByUserId = async (req, res, next) => {
 };
 
 const createTask = async (req, res, next) => {
+    
     const { title, description, completed, creator } = req.body;
 
     const createdTask = new Task({
@@ -78,8 +79,12 @@ const createTask = async (req, res, next) => {
 }
 
 const updateTask = async (req, res, next) => {
-    const { title, description, completed, creator } = req.body;
-    const taskId = req.params.tid;
+    console.log('updateTask$$$$$$$$$$$$$$$$$$$$');
+    const { completed } = req.body;
+    const taskId = req.params.id;
+
+        console.log('completed :', completed);
+    
 
     let task;
     try {
@@ -89,13 +94,11 @@ const updateTask = async (req, res, next) => {
         const error = new HttpError('Could not find task.', 500);
         return next(error);
     } 
-    if (task.creator._id.toString() !== creator) {
-        const error = new HttpError('You are not allowed to edit this task.', 401);
-        return next(error);
-    }
+    // if (creator.toString() !== creator) {
+    //     const error = new HttpError('You are not allowed to edit this task.', 401);
+    //     return next(error);
+    // }
 
-    task.title = title;
-    task.description = description;
     task.completed = completed;
 
     try { 
