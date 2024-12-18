@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Tasks from './routes/Tasks';
 import NewTask from './routes/NewTask';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import RootLayout from './routes/RootLayout';
+import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+//Create a QueryClient instance
+const queryClient = new QueryClient();
+
+//define routes
 const router = createBrowserRouter([
   {
      path: '/',
@@ -24,10 +29,14 @@ const router = createBrowserRouter([
   }
 ]);
 
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

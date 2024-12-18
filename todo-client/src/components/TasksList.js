@@ -3,19 +3,6 @@ import Task from './Task';
 // import classes from './PostsList.module.css';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 
-
-  // useEffect(() => {
-  //   setIsFetching(true);
-  //   async function fetchTasks(){
-  //     const response = await fetch('http://localhost:9000/api/tasks')
-  //     const resData = await response.json();
-  //     setTasks(resData.tasks);
-  //     setIsFetching(false);
-  //   }
-
-  //   fetchTasks();
-  // }, []);
-
   const fetchTasks = async () => {
     const response = await fetch('http://localhost:9000/api/tasks');
     if (!response.ok) {
@@ -24,16 +11,7 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
     return response.json();
   };
 
-//   function addPostHandler(postData){
-//     fetch('http://localhost:8080/posts', {
-//       method:'post',
-//       body: JSON.stringify(postData),
-//       headers: {'Content-Type': 'application/json'
-//       }
-//     });
-//     setPosts((existingPosts) => [postData, ...existingPosts]);
-//   }
-const updateTask = async ({ id, completed, creator }) => {
+const updateTask = async ({ id, completed }) => {
   const response = await fetch(`http://localhost:9000/api/tasks/${id}`, {
     method: 'PUT',
     headers: {

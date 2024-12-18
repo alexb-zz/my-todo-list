@@ -8,7 +8,6 @@ function Tasks() {
 
   return (
     <>
-      
       <main>
         <QueryClientProvider client={queryClient}>
         <TasksList />
