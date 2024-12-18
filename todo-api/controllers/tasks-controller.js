@@ -79,12 +79,8 @@ const createTask = async (req, res, next) => {
 }
 
 const updateTask = async (req, res, next) => {
-    console.log('updateTask$$$$$$$$$$$$$$$$$$$$');
     const { completed } = req.body;
     const taskId = req.params.id;
-
-        console.log('completed :', completed);
-    
 
     let task;
     try {
@@ -94,11 +90,7 @@ const updateTask = async (req, res, next) => {
         const error = new HttpError('Could not find task.', 500);
         return next(error);
     } 
-    // if (creator.toString() !== creator) {
-    //     const error = new HttpError('You are not allowed to edit this task.', 401);
-    //     return next(error);
-    // }
-
+    
     task.completed = completed;
 
     try { 

@@ -15,17 +15,11 @@ const queryClient = new QueryClient();
 //define routes
 const router = createBrowserRouter([
   {
-     path: '/',
-     element: <RootLayout />,
-     children: [
-       {
-          path: '/',
-          element: <Tasks />,
-          children: [{path: 'create-task', 
-            element: <NewTask />
-          }],
-       },
-     ],
+    path: '/',
+    element: <Tasks />,
+    children: [{path: 'create-task', 
+      element: <NewTask />
+    }],
   }
 ]);
 
