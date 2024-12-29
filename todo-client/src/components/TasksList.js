@@ -1,6 +1,6 @@
 import React from 'react';
 import Task from './Task';
-// import classes from './PostsList.module.css';
+
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 
   const fetchTasks = async () => {
@@ -25,10 +25,10 @@ const updateTask = async ({ id, completed }) => {
   return response.json();
 };
 
-function TasksList() {
+function TasksList(props) {
   const queryClient = useQueryClient();
   const { data, isLoading, error } = useQuery({
-    queryKey: 'tasks',
+    queryKey: ['tasks'],
     queryFn: fetchTasks,
   });
 
@@ -48,12 +48,7 @@ function TasksList() {
   const tasksArray = Array.isArray(data.tasks) ? data.tasks : [];
 
   return (
-    <>
-      <div className='flex flex-row justify-center items-center min-h-screen  bg-black'>
-        
-      <div className='flex flex-col justify-start items-center w-[30rem] min-h-[40rem] border-spacing-1 rounded-lg border-2 border-slate-200/50'>
-
-      <div className='m-4 p-2 text-4xl text-slate-100/50'>My Todo List</div>
+    <>    
         <ul className='flex flex-col justify-center items-center m-4  bg-black p-4 rounded-lg text-slate-300 min-h-2.5 border-2 border-slate-200/50 shadow-lg'>
           {tasksArray.map((task) => (
             <Task 
@@ -65,8 +60,6 @@ function TasksList() {
               onToggleCompleted={(completed) => mutation.mutate({ id: task.id, completed })} />
           ))}
         </ul>
-      </div>
-      </div>
     </>
   );
 }

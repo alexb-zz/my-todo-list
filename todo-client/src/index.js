@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Tasks from './routes/Tasks';
-import NewTask from './routes/NewTask';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
-import RootLayout from './routes/RootLayout';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import './index.css';
 import App from './App';
+import NotFoundPage from './pages/NotFoundPage';
 
 //Create a QueryClient instance
 const queryClient = new QueryClient();
@@ -16,10 +15,12 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Tasks />,
-    children: [{path: 'create-task', 
-      element: <NewTask />
-    }],
+    element: <App />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path:'/test',
+    element: <div>Test</div>
   }
 ]);
 
