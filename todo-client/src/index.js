@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './index.css';
 import App from './App';
+import { ModalProvider } from './contexts/ModalContext';
 import NotFoundPage from './pages/NotFoundPage';
 
 //Create a QueryClient instance
@@ -27,11 +28,13 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}>
-        <App />
-      </RouterProvider>
-    </QueryClientProvider>
+    <ModalProvider >
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router}>      
+          <App />
+        </RouterProvider>
+      </QueryClientProvider>
+    </ModalProvider>
   </React.StrictMode>
 );
 

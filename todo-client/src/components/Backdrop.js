@@ -1,20 +1,17 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 
-const Backdrop = props => {
-  useEffect(() => {
-    console.log('Backdrop mounted');
-    return () => {
-      console.log('Backdrop unmounted');
-    };
-  }, []);
 
-  const content = <div className='h-screen w-screen bg-slate-500' onClick={props.onClick} />;
+// Desc: Backdrop component for modal 
+import { useModal } from '../contexts/ModalContext';
 
-  return ReactDOM.createPortal(
-    content, document.getElementById('backdrop-hook')
-  );
+const Backdrop = (props) => {
+  const { closeModalHandler } = useModal();
+  
+  return (
+    <div className='backdrop fixed inset-0 flex flex-col justify-center items-center h-screen w-screen bg-black' onClick={closeModalHandler} >
+      {props.children}
+    </div>
+  )
 };
 
 export default Backdrop;
-

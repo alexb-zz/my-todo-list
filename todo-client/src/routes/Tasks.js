@@ -1,5 +1,4 @@
 import TasksList from '../components/TasksList';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();

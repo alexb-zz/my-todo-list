@@ -1,16 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Card from './Card';
+import Backdrop from './Backdrop';
+import { useModal } from '../contexts/ModalContext';
 
 const Modal = (props) => {
+  const { showModal } = useModal();
+  console.log("Modal: showModal =", showModal);
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const taskTitle = event.target.taskTitle.value;
+    props.onAddTask(taskTitle);
+  };
   const content = <React.Fragment>
-    { props.show && 
-      <div className='fixed inset-0 flex flex-col justify-center items-center h-screen w-screen bg-slate-500' onClick={props.onClose} >
-        <div className='flex justify-center items-center'>
-          <div className='flex justify-center items-center h-40 w-80 shadow-lg rounded-lg bg-slate-400  text-white text-2xl'>
-            <h1>Modal Content</h1>
-          </div>
-        </div>
-      </div> 
+    { showModal && 
+      <Backdrop>
+        <Card>
+            <form onSubmit={handleFormSubmit}>
+              <div className='flex flex-row justify-end items-center'>
+                <input type='text' name="taskTitle" className='bg-slate-950 cursor-pointer focus:border-collapse w-64 h-10 p-2 m-2 rounded-lg' placeholder='Enter task' />
+                <input type='hidden' name='creator' value={props.creator} />  
+                <button type='submit' className='flex flex-row justify-center items-center w-20 h-10 p-2 m-2 border-2 border-white rounded-lg'>Add</button>
+              </div>
+            </form>
+        </Card>
+      </Backdrop>
     }            
   </React.Fragment>
 
